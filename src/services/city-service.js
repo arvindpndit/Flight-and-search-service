@@ -1,4 +1,4 @@
-const { CityRepository } = require("../repository/city-repository");
+const { CityRepository } = require("../repository/index");
 
 class CityService {
   constructor() {
