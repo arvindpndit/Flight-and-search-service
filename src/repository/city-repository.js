@@ -28,20 +28,36 @@ class CityRepository {
 
   async getCity(cityId) {
     try {
-      const city = await City.findByPk(cityId);
+      const city = await City.findOne({
+        attributes: ["id", "name", "createdAt", "updatedAt"],
+        where: {
+          id: cityId,
+        },
+      });
+
       return city;
     } catch (error) {
       console.log("something went wrong the repository layer");
-      throw { error };
+      throw error;
     }
   }
 
   async updateCity(cityId, updatedData) {
     try {
-      const city = await City.findByPk(cityId);
-      city.name = updatedData.name;
-      await city.save();
-      return city;
+      const city = await City.findOne({
+        attributes: ["id", "name", "createdAt", "updatedAt"],
+        where: {
+          id: cityId,
+        },
+      });
+      if (city) {
+        city.name = updatedData.name;
+        await city.save();
+        return city;
+      } else {
+        // Handle the case when the city with the given ID is not found
+        throw new Error("City not found");
+      }
     } catch (error) {
       console.log("something went wrong the repository layer");
       throw { error };

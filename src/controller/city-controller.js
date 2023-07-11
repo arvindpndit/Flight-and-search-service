@@ -67,6 +67,12 @@ const get = async (req, res) => {
 const update = async (req, res) => {
   try {
     const city = await cityService.updateCity(req.params.id, req.body);
+    return res.status(200).json({
+      data: city,
+      success: true,
+      message: "Successfully updated a city",
+      err: {},
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
