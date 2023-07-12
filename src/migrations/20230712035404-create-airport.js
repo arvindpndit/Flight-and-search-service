@@ -18,6 +18,12 @@ module.exports = {
       },
       cityId: {
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+          model: "City",
+          key: "id",
+          as: "cityId",
+        },
         allowNull: false,
       },
       createdAt: {
