@@ -42,6 +42,18 @@ class CityRepository {
     }
   }
 
+  async getAllCities() {
+    try {
+      const cities = await City.findAll({
+        attributes: ["id", "name", "createdAt", "updatedAt"],
+      });
+      return cities;
+    } catch (error) {
+      console.log("something went wrong the repository layer");
+      throw error;
+    }
+  }
+
   async updateCity(cityId, updatedData) {
     try {
       const city = await City.findOne({
