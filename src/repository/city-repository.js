@@ -42,8 +42,18 @@ class CityRepository {
     }
   }
 
-  async getAllCities() {
+  async getAllCities(filter) {
     try {
+      if (filter.name) {
+        const cities = await City.findAll({
+          where: {
+            name: {
+              [Op.startsWith]: filter.name,
+            },
+          },
+        });
+        return cities;
+      }
       const cities = await City.findAll({
         attributes: ["id", "name", "createdAt", "updatedAt"],
       });
