@@ -12,6 +12,19 @@ class AirportRepository {
       throw error;
     }
   }
+
+  async deleteAirport(cityId) {
+    try {
+      const airport = await Airport.destroy({
+        where: {
+          cityId: cityId,
+        },
+      });
+    } catch (error) {
+      console.log("something went wrong the repository layer");
+      throw error;
+    }
+  }
 }
 
 module.exports = AirportRepository;

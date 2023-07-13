@@ -25,6 +25,26 @@ const create = async (req, res) => {
   }
 };
 
+const destroy = async (req, res) => {
+  try {
+    const airport = airportService.deleteAirport(req.params.id);
+    return res.status(200).json({
+      data: airport,
+      success: true,
+      message: "Airport deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to delete an airport",
+      err: error,
+    });
+  }
+};
+
 module.exports = {
   create,
+  destroy,
 };
