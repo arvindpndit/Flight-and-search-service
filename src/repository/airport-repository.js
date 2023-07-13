@@ -51,6 +51,26 @@ class AirportRepository {
       throw error;
     }
   }
+
+  async updateAirport(airportId, updatedData) {
+    try {
+      const airport = await Airport.findOne({
+        where: {
+          id: airportId,
+        },
+      });
+      if (airport) {
+        airport.name = updatedData.name;
+        await airport.save();
+        return airport;
+      } else {
+        throw new Error("City not found");
+      }
+    } catch (error) {
+      console.log("something went wrong the repository layer");
+      throw { error };
+    }
+  }
 }
 
 module.exports = AirportRepository;

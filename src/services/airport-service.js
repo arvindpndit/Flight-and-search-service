@@ -47,6 +47,19 @@ class AirportService {
       throw { error };
     }
   }
+
+  async updateAirport(airportId, updatedData) {
+    try {
+      const airport = await this.AirportRepository.updateAirport(
+        airportId,
+        updatedData
+      );
+      return airport;
+    } catch (error) {
+      console.log("something went wrong in the service layer");
+      throw error;
+    }
+  }
 }
 
 module.exports = AirportService;
