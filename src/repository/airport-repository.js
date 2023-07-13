@@ -7,6 +7,7 @@ class AirportRepository {
         name,
         cityId,
       });
+      return airport;
     } catch (error) {
       console.log("something went wrong the repository layer");
       throw error;
@@ -20,6 +21,21 @@ class AirportRepository {
           cityId: cityId,
         },
       });
+      return airport;
+    } catch (error) {
+      console.log("something went wrong the repository layer");
+      throw error;
+    }
+  }
+
+  async getAirport(id) {
+    try {
+      const airport = await Airport.findOne({
+        where: {
+          id: id,
+        },
+      });
+      return airport;
     } catch (error) {
       console.log("something went wrong the repository layer");
       throw error;
