@@ -20,6 +20,16 @@ class FlightRepository {
       throw { error };
     }
   }
+
+  async getAllFlight() {
+    try {
+      const flights = await Flights.findAll();
+      return flights;
+    } catch (error) {
+      console.log("something went wrong the repository layer");
+      throw { error };
+    }
+  }
 }
 
 module.exports = FlightRepository;

@@ -24,6 +24,16 @@ class FlightService {
       throw { error };
     }
   }
+
+  async getAllFlight() {
+    try {
+      const flights = await this.flightRepository.getAllFlight();
+      return flights;
+    } catch (error) {
+      console.log("something went wrong in the service layer");
+      throw { error };
+    }
+  }
 }
 
 module.exports = FlightService;
