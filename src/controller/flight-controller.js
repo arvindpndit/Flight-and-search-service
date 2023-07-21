@@ -33,6 +33,29 @@ const create = async (req, res) => {
   }
 };
 
+//GET
+const get = async (req, res) => {
+  try {
+    const flightId = req.params.id;
+    const flight = await flightService.getFlight(flightId);
+    return res.status(201).json({
+      data: flight,
+      success: true,
+      message: "flight fetched successfully",
+      error: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to get the flight",
+      err: error,
+    });
+  }
+};
+
 module.exports = {
   create,
+  get,
 };
