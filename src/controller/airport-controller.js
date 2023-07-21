@@ -1,4 +1,5 @@
 const { AirportService } = require("../services/index");
+const { SuccessCodes } = require("../utils/codes");
 
 const airportService = new AirportService();
 
@@ -8,7 +9,7 @@ const create = async (req, res) => {
       name: req.body.name,
       cityId: req.body.cityId,
     });
-    return res.status(201).json({
+    return res.status(SuccessCodes.CREATED).json({
       data: airport,
       success: true,
       message: "Airport created successfully",
@@ -28,7 +29,7 @@ const create = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     const airport = await airportService.deleteAirport(req.params.id);
-    return res.status(200).json({
+    return res.status(SuccessCodes.OK).json({
       data: airport,
       success: true,
       message: "Airport deleted successfully",
@@ -47,7 +48,7 @@ const destroy = async (req, res) => {
 const get = async (req, res) => {
   try {
     const airport = await airportService.getAirport(req.params.id);
-    return res.status(200).json({
+    return res.status(SuccessCodes.OK).json({
       data: airport,
       success: true,
       message: "Airport fetched successfully",
@@ -66,7 +67,7 @@ const get = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     const airport = await airportService.getAllAirport();
-    return res.status(200).json({
+    return res.status(SuccessCodes.OK).json({
       data: airport,
       success: true,
       message: "Airports fetched successfully",
@@ -85,7 +86,7 @@ const getAll = async (req, res) => {
 const update = async (req, res) => {
   try {
     const airport = await airportService.updateAirport(req.params.id, req.body);
-    return res.status(200).json({
+    return res.status(SuccessCodes.OK).json({
       data: airport,
       success: true,
       message: "Successfully updated airport",
