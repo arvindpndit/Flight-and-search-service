@@ -11,6 +11,20 @@ class FlightRepository {
     }
   }
 
+  async deleteFlight(flightId){
+    try {
+      const flight = await Flights.destroy({
+        where: {
+          id: flightId,
+        }
+      })
+      return flight;
+    } catch (error) {
+      console.log("Something went wrong in the repository layer");
+      throw { error };
+    }
+  }
+
   async updateFlight(flightId, data) {
     try {
       await Flights.update(data, {

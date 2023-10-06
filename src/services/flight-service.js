@@ -15,6 +15,16 @@ class FlightService {
     }
   }
 
+  async deleteFlight(flightId){
+    try {
+      const response = await this.flightRepository.deleteFlight(flightId);
+      return response;
+    } catch (error) {
+      console.log("something went wrong in the service layer");
+      throw { error };
+    }
+  }
+
   async updateFlight(flightId, data) {
     try {
       const response = await this.flightRepository.updateFlight(flightId, data);
